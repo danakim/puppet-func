@@ -25,7 +25,7 @@ class Puppetctl(func_module.FuncModule):
             os.kill(pid_int, signal.SIGUSR1)
             return "Puppet run triggered."
         else:
-            proc = subprocess.Popen('puppet agent --onetime --ignorecache --no-usecacheonfailure --no-splay --daemonize', stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+            proc = subprocess.Popen(['puppet', 'agent', '--onetime', '--ignorecache', '--no-usecacheonfailure', '--no-splay', '--daemonize'], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output, errors = proc.communicate()
             return (proc.returncode, errors)
 
